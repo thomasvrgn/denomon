@@ -24,5 +24,15 @@ export async function watch() {
     }
     if (match) files.push(file);
   }
-  console.log(files);
+
+  const pathFiles: Array<string> = files.map((x: File) => x.path);
+  const watcher: AsyncIterableIterator<Deno.FsEvent> = Deno.watchFs(pathFiles);
+  const interval: number = 10;
+  let lastModification: number = Date.now() - interval;
+
+  for await (const event of watcher) {
+    if (lastModification + interval > Date.now()) continue;
+    lastModification = Date.now();
+    console.log('started');
+  }
 }
