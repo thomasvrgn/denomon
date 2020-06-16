@@ -1,10 +1,10 @@
 import { configuration } from './config.ts';
 import { Log } from './log.ts';
 
-export async function run() {
+export async function run(path: string) {
   Log.success('starting `deno ', configuration.pattern || '*.*', '`');
   const run = Deno.run({
-    cmd: ['deno', 'run', '--allow-read', '--unstable', '--no-check', configuration.pattern || '*.*'],
+    cmd: ['deno', 'run', '--allow-read', '--unstable', '--no-check', path],
     stdout: 'piped',
     stderr: 'piped',
   });

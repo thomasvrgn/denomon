@@ -1,6 +1,7 @@
 import { expandGlob } from 'https://deno.land/std@0.74.0/fs/mod.ts';
 import { configuration } from './config.ts';
 import { File } from '../typings/file.ts';
+import { run } from './run.ts';
 
 export async function watch() {
   const files: File[] = [];
@@ -27,12 +28,13 @@ export async function watch() {
 
   const pathFiles: Array<string> = files.map((x: File) => x.path);
   const watcher: AsyncIterableIterator<Deno.FsEvent> = Deno.watchFs(pathFiles);
-  const interval: number = 10;
+  const interval: number = 500;
   let lastModification: number = Date.now() - interval;
 
   for await (const event of watcher) {
     if (lastModification + interval > Date.now()) continue;
     lastModification = Date.now();
-    console.log('started');
+    const pathEvent: string = event.paths[0];
+    await run(pathEvent);
   }
 }

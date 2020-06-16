@@ -1,7 +1,7 @@
 {
   "name": "denomon",
   "version": "1.0.5",
-  "pattern": "**/*.ts",
+  "pattern": "tests/*.ts",
   "extensions": [
     "ts", "js"
   ]
