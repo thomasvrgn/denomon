@@ -1,0 +1,8 @@
+{
+  "name": "denomon",
+  "version": "1.0.5",
+  "pattern": "*.*",
+  "extensions": [
+    "ts", "js"
+  ]
+}
