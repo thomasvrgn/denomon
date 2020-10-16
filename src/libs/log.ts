@@ -8,4 +8,8 @@ export class Log {
   public static warning(...message: string[]): void {
     console.log(color.yellow(`[denomon] ${message.join(' ')}`));
   }
+
+  public static success(...message: string[]): void {
+    console.log(color.green(`[denomon] ${message.join(' ')}`));
+  }
 }
