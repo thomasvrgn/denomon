@@ -1,8 +1,5 @@
-import { Log } from './libs/log.ts';
-import { configuration } from './libs/config.ts';
 import { watch } from './libs/watch.ts';
+import { init } from './libs/init.ts';
 
-watch()
-Log.error('test');
-
-console.log(configuration)
+init();
+await watch()
